@@ -56,7 +56,7 @@ export const LoginPage = () => {
     }
 
     return (
-        <div className='flex flex-col w-full lg:w-1/2'>
+        <div className='flex flex-col w-full lg:w-1/2 mt-16'>
             <h3 className='uppercase font-bold tracking-wide md:-mb-4 '>start for free</h3>
             <p className='text-5xl text-silver leading-none '>Create new account<span className='text-7xl leading-none text-cornflower-blue'>.</span></p>
             <h3 className='font-thin tracking-wide '>Already Member? <span className='text-jet cursor-pointer'>Register</span></h3>

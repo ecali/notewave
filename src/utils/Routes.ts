@@ -6,17 +6,26 @@ const routes: RoutesInterface[] = [
     {
         id: RoutesName.NOT_FOUND,
         path: '*',
-        protected: false
+        protected: false,
+        navbar: true
     }, {
         id: RoutesName.LOGIN,
         path: '/login',
         protected: false,
-        component: LoginPage
+        component: LoginPage,
+        navbar: true
     }, {
         id: RoutesName.DASHBOARD,
         path: '/dashboard',
         protected: true,
-        component: DashboardPage
+        component: DashboardPage,
+        navbar: false
+    }, {
+        id: RoutesName.USER,
+        path: '/user',
+        protected: true,
+        component: DashboardPage,
+        navbar: false
     }
 ];
 
@@ -30,4 +39,8 @@ export const getRoute = (id: RoutesName) => {
 
 export const getRoutePath = (id: RoutesName) => {
     return getRoute(id).path;
+}
+
+export const isVisibleNavBar = (path: string) => {
+    return getAllRoutes().find(route => route.path === path)?.navbar ?? true;
 }
