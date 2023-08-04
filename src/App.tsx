@@ -1,12 +1,20 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { MinimalNav } from './components/MinimalNav';
+import { Routes, Route, useLocation } from 'react-router-dom';
+import { LoginPage } from './pages/Login';
 
 function App() {
+    const location = useLocation();
   return (
-      <h1 className="text-3xl font-bold underline">
-        Hello world!
-      </h1>
+      <div className={`h-screen w-screen bg-jet p-4 text-silver ${location.pathname.includes('login') ? 'bg-cover bg-[url(https://picsum.photos/id/63/800/800?grayscale&blur=3)]' : '' }`} >
+          <div className='mb-16'>
+              <MinimalNav />
+          </div>
+          <Routes>
+              <Route path="/login" element={<LoginPage />} />
+          </Routes>
+      </div>
   );
 }
 
