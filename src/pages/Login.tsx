@@ -1,14 +1,26 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { isPasswordValid, isValidEmail } from '../utils/Validators';
+import { useNavigate } from 'react-router-dom';
+import { SignInWithSocialMedia } from '../modules/auth';
+import { auth, Providers } from '../config/firebase';
+import { getRoutePath } from '../utils/Routes';
+import { RoutesName } from '../interfaces/Routes.interface';
 
 export const LoginPage = () => {
 
+    const navigate = useNavigate();
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
     const [isButtonDisabled, setIsButtonDisabled] = useState(true);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errorEmail, setErrorEmail] = useState(true);
     const [errorPassword, setErrorPassword] = useState(true);
+    const [errorSignIn, setErrorSignIn] = useState('');
+    const [authenticating, setAuthenticating] = useState(false);
+
+    useEffect(() => {
+        if(auth.currentUser) navigate(getRoutePath(RoutesName.DASHBOARD));
+    }, []);
 
     const togglePasswordVisibility = () => {
         setIsPasswordVisible((prevState) => !prevState)
@@ -21,8 +33,7 @@ export const LoginPage = () => {
     }
 
     const handleButtonStatus = () => {
-        setIsButtonDisabled(errorEmail || errorPassword);
-
+        setIsButtonDisabled((errorEmail || errorPassword) && authenticating);
     }
 
     const handlePassword = (value: string) => {
@@ -32,7 +43,16 @@ export const LoginPage = () => {
     }
 
     const handleLoginWithGoogle = () => {
-        console.log('login with google')
+        if(!authenticating){
+            if(errorSignIn !== '') setErrorSignIn('');
+            setAuthenticating(true);
+            SignInWithSocialMedia(Providers.google)
+                .then(result => navigate(getRoutePath(RoutesName.DASHBOARD)))
+                .catch(error => {
+                    setAuthenticating(false);
+                    setErrorSignIn(error.message);
+                });
+        }
     }
 
     return (

@@ -1,4 +1,3 @@
-import { Component, JSX } from 'react';
 
 export interface RoutesInterface {
     path: string,
@@ -9,5 +8,6 @@ export interface RoutesInterface {
 
 export enum RoutesName {
     LOGIN,
-    NOT_FOUND
+    NOT_FOUND,
+    DASHBOARD
 }

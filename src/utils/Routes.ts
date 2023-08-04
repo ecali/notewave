@@ -1,17 +1,23 @@
 import { RoutesInterface, RoutesName } from '../interfaces/Routes.interface';
 import { LoginPage } from '../pages/Login';
+import { DashboardPage } from '../pages/Dashboard';
 
 const routes: RoutesInterface[] = [
     {
         id: RoutesName.NOT_FOUND,
         path: '*',
-        protected: false,
-    },{
+        protected: false
+    }, {
         id: RoutesName.LOGIN,
         path: '/login',
         protected: false,
         component: LoginPage
-    },
+    }, {
+        id: RoutesName.DASHBOARD,
+        path: '/dashboard',
+        protected: true,
+        component: DashboardPage
+    }
 ];
 
 export const getAllRoutes = () => {
