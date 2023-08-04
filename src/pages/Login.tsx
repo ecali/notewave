@@ -20,7 +20,7 @@ export const LoginPage = () => {
 
     useEffect(() => {
         if(auth.currentUser) navigate(getRoutePath(RoutesName.DASHBOARD));
-    }, []);
+    }, [navigate]);
 
     const togglePasswordVisibility = () => {
         setIsPasswordVisible((prevState) => !prevState)
@@ -59,7 +59,7 @@ export const LoginPage = () => {
         <div className='flex flex-col w-full lg:w-1/2'>
             <h3 className='uppercase font-bold tracking-wide md:-mb-4 '>start for free</h3>
             <p className='text-5xl text-silver leading-none '>Create new account<span className='text-7xl leading-none text-cornflower-blue'>.</span></p>
-            <h3 className='font-thin tracking-wide '>New Member? Register</h3>
+            <h3 className='font-thin tracking-wide '>Already Member? <span className='text-jet cursor-pointer'>Register</span></h3>
             <div className='flex flex-col'>
                 <div className="flex flex-col md:w-2/3 w-full my-4 pr-4">
                     <div className='mb-4'>

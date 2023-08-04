@@ -6,6 +6,7 @@ import { getAllRoutes, getRoutePath } from './utils/Routes';
 import { RoutesName } from './interfaces/Routes.interface';
 import { auth } from './config/firebase';
 import { AuthRoute } from './modules/AuthRoute';
+import { Loader } from './components/UI/Loader';
 
 function App() {
     const location = useLocation();
@@ -13,11 +14,6 @@ function App() {
 
     useEffect(() => {
         auth.onAuthStateChanged(user => {
-            if(user){
-                console.log('User detect');
-            }else{
-                console.log('No user detected');
-            }
             setLoading(false);
         })
     }, []);
@@ -25,25 +21,28 @@ function App() {
     const isBackgroundPage = () => {
         return location.pathname.includes('login') || location.pathname.includes('register');
     }
-    if (loading) return <div>Loading...</div>
 
   return (
       <div className={`h-screen w-screen bg-jet p-4 text-silver ${isBackgroundPage() ? 'bg-cover bg-[url(https://picsum.photos/id/63/800/800?grayscale&blur=3)]' : '' }`} >
           <div className='mb-16'>
               <MinimalNav />
           </div>
-          <Routes>
-              {
-                  getAllRoutes().map((route, index) => (
-                      <Route key={index} path={route.path} element={
-                          route.component ?
-                              route.protected ? <AuthRoute> <route.component /> </AuthRoute> :
-                                  <route.component />
-                              : <Navigate to={getRoutePath(RoutesName.LOGIN)} replace />
-                      } />
-                  ))
-              }
-          </Routes>
+          {loading ?
+              <div className='flex justify-center items-center '><Loader /></div>:
+              <Routes>
+                  {
+                      getAllRoutes().map((route, index) => (
+                          <Route key={index} path={route.path} element={
+                              route.component ?
+                                  route.protected ? <AuthRoute> <route.component /> </AuthRoute> :
+                                      <route.component />
+                                  : <Navigate to={getRoutePath(RoutesName.LOGIN)} replace />
+                          } />
+                      ))
+                  }
+              </Routes>
+          }
+
       </div>
   );
 }
