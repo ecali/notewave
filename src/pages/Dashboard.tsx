@@ -55,8 +55,8 @@ export const DashboardPage = () => {
                     <div className='flex flex-row justify-between items-center my-4'>
                         Light {dark ? 'off' : 'on'}
                         <label className="relative inline-flex items-center ">
-                            <input type="checkbox" value="" className="sr-only peer" checked={dark} />
-                            <div onClick={handleTheme} className="w-11 cursor-pointer bg-eerie-black h-6 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-focus:ring-4 peer-focus:ring-teal-300 dark:peer-focus:ring-teal-800 peer-checked:after:translate-x-full peer-checked:after:border-white peer-checked:after:bg-silver after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-silver after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-teal-600"></div>
+                            <input onChange={handleTheme} type="checkbox" value="" className="sr-only peer" checked={dark} />
+                            <div className="w-11 cursor-pointer bg-eerie-black h-6 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-focus:ring-4 peer-focus:ring-teal-300 dark:peer-focus:ring-teal-800 peer-checked:after:translate-x-full peer-checked:after:border-white peer-checked:after:bg-silver after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-silver after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-teal-600"></div>
                         </label>
                     </div>
                     <div className='flex flex-row justify-end'>
