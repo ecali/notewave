@@ -15,7 +15,7 @@ export const useAxios = (params: AxiosRequestConfig<any>) => {
             }
             // (userId='${auth.currentUser?.uid}' ||
             params.params = {
-                filter: `(allUsers=true)`
+                filter: `(userId='${auth.currentUser?.uid}' ||allUsers=true)`
             }
 
             const response = await axios.request(params);

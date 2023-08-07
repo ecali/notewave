@@ -8,12 +8,14 @@ import firebase from 'firebase/compat/app';
 import { Search } from '../components/dashboard/Search';
 import { CustomButton } from '../components/UI/CustomButton';
 import { ListsColumn } from '../components/dashboard/ListsColumn';
-import { Method, PocketBaseList } from '../interfaces/PocketBase.interface';
+import { Method, PocketBaseList, PocketBaseNote } from '../interfaces/PocketBase.interface';
 import { useAxios } from '../hooks/useAxios';
 import { Endpoint } from '../interfaces/endpoint.enum';
 import { CircleLoader } from '../components/UI/CircleLoader';
 import { CustomInputIcon } from '../components/UI/CustomInputIcon';
 import { IconName } from '../interfaces/IconName.enum';
+import Moment from 'react-moment';
+import { NoteColumn } from '../components/dashboard/NoteColumn';
 
 export const DashboardPage = () => {
     const navigate = useNavigate();
@@ -25,6 +27,8 @@ export const DashboardPage = () => {
     const [dataNotes, errorsNotes, loadingNotes, fetchDataNotes] = useAxios({method: Method.get, url: Endpoint.notes})
     const [lists, setLists] = useState<PocketBaseList[]>([]);
     const [filter, setFilter] = useState('');
+    const [notes, setNotes] = useState<PocketBaseNote[]>([]);
+    const [selectedNote, setSelectedNote] = useState<PocketBaseNote >();
 
     const logOut = () => {
         auth.signOut().then( _ => navigate(getRoutePath(RoutesName.LOGIN)));
@@ -40,11 +44,12 @@ export const DashboardPage = () => {
     useEffect(() => {
         setLists(dataLists?.items);
         setSelected(dataLists?.items[0]);
-    }, [dataLists?.items])
+        setSelectedNote(undefined);
+    }, [dataLists?.items]);
 
     useEffect(() => {
-        console.log(dataNotes?.items)
-    }, [dataNotes?.items])
+        setNotes(dataNotes?.items);
+    }, [dataNotes?.items]);
 
     const handleTheme = () => {
         setDark(!dark);
@@ -107,8 +112,13 @@ export const DashboardPage = () => {
                     </div>
                 </div>
                 <CustomInputIcon input={filter} handleInput={setFilter} icon={IconName.funnel} clearIcon={IconName.xCircle} customBackGround='bg-jet' placeHolder='Filter' />
+                {selected && notes && <div className="w-full overflow-y-auto flex-col py-8">
+                    <NoteColumn notes={notes.filter(note => note.list.includes(selected?.id ) && JSON.stringify(note).toLowerCase().includes(filter.toLowerCase()))} selected={selectedNote} setSelected={setSelectedNote} />
+                </div>}
             </div>
-            <div className='flex flex-col w-2/4'></div>
+            <div className='flex flex-col w-2/4'>
+
+            </div>
         </div>
     );
 }

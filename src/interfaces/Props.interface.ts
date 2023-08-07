@@ -1,4 +1,4 @@
-import { PocketBaseList } from './PocketBase.interface';
+import { PocketBaseList, PocketBaseNote } from './PocketBase.interface';
 import { IconName } from './IconName.enum';
 
 export interface ListColumnProps {
@@ -25,5 +25,12 @@ export interface CustomButtonProps {
     textColor?: string;
     small?: boolean;
     callBack: () => void;
+}
+
+export interface NoteColumnProps {
+    notes: PocketBaseNote[],
+    selected?: PocketBaseNote ,
+    setSelected: (arg: PocketBaseNote) => void;
+
 }
 

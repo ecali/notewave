@@ -17,3 +17,12 @@ export interface PocketBaseList {
     label: string,
     icon: string
 }
+export interface PocketBaseNote {
+    body: string,
+    created: string,
+    id: string,
+    tag: string,
+    title: string,
+    updated: string,
+    list: string[]
+}
