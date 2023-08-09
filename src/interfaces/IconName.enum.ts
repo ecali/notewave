@@ -8,5 +8,7 @@ export enum IconName {
     plus = 'plus',
     arrowRightOnRectangleIcon = 'arrowRightOnRectangleIcon',
     chevronDown = 'ChevronDown',
-    ellipsisHorizontal = 'ellipsis-horizontal'
+    ellipsisHorizontal = 'ellipsis-horizontal',
+    user = 'user',
+    cog6Tooth = 'cog-6-tooth'
 }

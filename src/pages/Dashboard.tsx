@@ -19,7 +19,6 @@ import { XMarkIcon } from '@heroicons/react/24/outline';
 import { CustomIcon, getIconForNewList } from '../components/UI/CustomIcon';
 
 export const DashboardPage = () => {
-    const navigate = useNavigate();
     const [currentUser, setCurrentUser] = useState<firebase.User>();
     const [search, setSearch] = useState('');
     const [dark, setDark] = useState(false);
@@ -45,9 +44,7 @@ export const DashboardPage = () => {
         }});
     const [dataDeleteList, errorDeleteList, loadingDeleteList, fetchDataDeleteList] = useAxios({method: Method.delete, url: Endpoint.list + '/' + deleteListId});
 
-    const logOut = () => {
-        auth.signOut().then( _ => navigate(getRoutePath(RoutesName.LOGIN)));
-    }
+
     useEffect(() => {
         if(auth.currentUser !== null){
             setCurrentUser(auth.currentUser);
@@ -152,12 +149,6 @@ export const DashboardPage = () => {
                             <div className="w-11 cursor-pointer bg-eerie-black h-6 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-focus:ring-4 peer-focus:ring-teal-300 dark:peer-focus:ring-teal-800 peer-checked:after:translate-x-full peer-checked:after:border-white peer-checked:after:bg-silver after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-silver after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-teal-600"></div>
                         </label>
                     </div>
-                    <div className='flex flex-row justify-end'>
-                        <div className='w-1/2 mb-4'>
-                            <CustomButton callBack={logOut} icon={IconName.arrowRightOnRectangleIcon} small={true} label='LOGOUT' background='bg-red' textColor='text-eerie-black' endIcon={true} />
-                        </div>
-                    </div>
-
                 </div>
             </div>
             <div className={`flex-col w-1/4 border-r-silver border-r-2 py-3 px-4 none flex`}>

@@ -3,7 +3,7 @@ import { CustomIcon } from './CustomIcon';
 
 export const CustomButton = (props: CustomButtonProps) => {
     return (
-        <div onClick={() => props.callBack()} className={`h-[50px]  rounded-lg flex flex-row font-bold px-4 items-center  
+        <div onClick={() => props.callBack()} className={`rounded-lg flex flex-row font-bold px-4 items-center  
         ${props.background ? props.background : 'bg-eerie-black'} ${props.textColor ? props.textColor : 'text-silver'}
         ${props.endIcon ? 'justify-between' : 'justify-start'} ${props.small ? 'h-[35px]' : 'h-[50px]'} ${props.disabled ? 'cursor-default' : 'cursor-pointer' } `
         }>

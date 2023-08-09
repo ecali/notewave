@@ -1,13 +1,15 @@
 import { IconName } from '../../interfaces/IconName.enum';
 import {
     ArrowRightOnRectangleIcon,
-    ChevronDownIcon,
-    DocumentTextIcon, EllipsisHorizontalIcon,
+    ChevronDownIcon, Cog6ToothIcon,
+    DocumentTextIcon,
+    EllipsisHorizontalIcon,
     FunnelIcon,
     MagnifyingGlassIcon,
     PlusIcon,
     StarIcon,
     TrashIcon,
+    UserIcon,
     XCircleIcon
 } from '@heroicons/react/24/outline';
 
@@ -33,6 +35,10 @@ export const CustomIcon = (props: {name: IconName, customClass?: string}) => {
             return <ChevronDownIcon className={props.customClass} />
         case IconName.ellipsisHorizontal:
             return <EllipsisHorizontalIcon className={props.customClass} />
+        case IconName.user:
+            return <UserIcon className={props.customClass} />
+        case IconName.cog6Tooth:
+            return <Cog6ToothIcon className={props.customClass} />
 
     }
 }
