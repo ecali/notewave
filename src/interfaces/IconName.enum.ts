@@ -6,5 +6,7 @@ export enum IconName {
     xCircle = 'xCircle',
     funnel= 'funnel',
     plus = 'plus',
-    arrowRightOnRectangleIcon = 'arrowRightOnRectangleIcon'
+    arrowRightOnRectangleIcon = 'arrowRightOnRectangleIcon',
+    chevronDown = 'ChevronDown',
+    ellipsisHorizontal = 'ellipsis-horizontal'
 }

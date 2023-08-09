@@ -5,7 +5,8 @@ export interface ListColumnProps {
     filterString: string,
     selected: PocketBaseList,
     setSelected: (arg: PocketBaseList) => void,
-    lists: PocketBaseList[]
+    lists: PocketBaseList[],
+    handleDelete?: (arg: string) => void
 }
 
 export interface CustomInputProps {
@@ -14,7 +15,8 @@ export interface CustomInputProps {
     clearIcon?: IconName,
     handleInput: (arg: string) => void,
     placeHolder?: string,
-    customBackGround?: string
+    customBackGround?: string,
+
 }
 
 export interface CustomButtonProps {
@@ -25,6 +27,7 @@ export interface CustomButtonProps {
     textColor?: string;
     small?: boolean;
     callBack: () => void;
+    disabled?: boolean
 }
 
 export interface NoteColumnProps {

@@ -1,7 +1,8 @@
 import { IconName } from '../../interfaces/IconName.enum';
 import {
     ArrowRightOnRectangleIcon,
-    DocumentTextIcon,
+    ChevronDownIcon,
+    DocumentTextIcon, EllipsisHorizontalIcon,
     FunnelIcon,
     MagnifyingGlassIcon,
     PlusIcon,
@@ -28,6 +29,14 @@ export const CustomIcon = (props: {name: IconName, customClass?: string}) => {
             return <PlusIcon className={props.customClass} />
         case IconName.arrowRightOnRectangleIcon :
             return <ArrowRightOnRectangleIcon className={props.customClass} />
+        case IconName.chevronDown:
+            return <ChevronDownIcon className={props.customClass} />
+        case IconName.ellipsisHorizontal:
+            return <EllipsisHorizontalIcon className={props.customClass} />
 
     }
+}
+
+export const getIconForNewList = () => {
+    return [IconName.arrowRightOnRectangleIcon, IconName.search, IconName.funnel, IconName.plus]
 }

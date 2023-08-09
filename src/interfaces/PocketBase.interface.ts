@@ -7,7 +7,9 @@ export interface BaseResponse {
 }
 
 export enum Method {
-    get = 'GET'
+    get = 'GET',
+    post = 'POST',
+    delete = 'DELETE'
 }
 
 export interface PocketBaseList {
