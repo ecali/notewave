@@ -73,7 +73,7 @@ export const DashboardPage = () => {
         setSearch(value);
     }
     const handleNewList = (create?: boolean) => {
-        if(!createNote) setCreateLis(true);
+        if(!createList) setCreateLis(true);
         if(create){
             fetchDataNewList().then(_ => {
                 setCreateLis(false);
@@ -160,7 +160,7 @@ export const DashboardPage = () => {
 
                 </div>
             </div>
-            <div className={`flex-col w-1/4 border-r-silver border-r-2 py-3 px-4 none ${createNote ? 'hidden' : 'flex'}`}>
+            <div className={`flex-col w-1/4 border-r-silver border-r-2 py-3 px-4 none flex`}>
                 <div className='flex justify-between items-center'>
                     {selected && <p className='text-silver text-2xl'>{selected?.label}</p>}
                     <div className='w-1/2'>
@@ -178,7 +178,7 @@ export const DashboardPage = () => {
                 }
                 {errorsNotes && <p>{errorsNotes}</p>}
             </div>
-            <div className={`flex flex-col  ${createNote ? 'w-3/4' : 'w-2/4'}`}>
+            <div className={`flex flex-col w-2/4 `}>
             </div>
         </div>
     );
