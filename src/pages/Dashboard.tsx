@@ -8,7 +8,7 @@ import firebase from 'firebase/compat/app';
 import { Search } from '../components/dashboard/Search';
 import { CustomButton } from '../components/UI/CustomButton';
 import { ListsColumn } from '../components/dashboard/ListsColumn';
-import { Method, PocketBaseList, PocketBaseNote } from '../interfaces/PocketBase.interface';
+import { ImportantListId, Method, PocketBaseList, PocketBaseNote } from '../interfaces/PocketBase.interface';
 import { useAxios } from '../hooks/useAxios';
 import { Endpoint } from '../interfaces/endpoint.enum';
 import { CircleLoader } from '../components/UI/CircleLoader';
@@ -169,7 +169,7 @@ export const DashboardPage = () => {
                 </div>
                 <CustomInputIcon input={filter} handleInput={setFilter} icon={IconName.funnel} clearIcon={IconName.xCircle} customBackGround='bg-jet' placeHolder='Filter' />
                 {selected && notes && <div className="w-full overflow-y-auto flex-col py-8">
-                    <NoteColumn notes={notes.filter(note => note.list.includes(selected?.id ) && JSON.stringify(note).toLowerCase().includes(filter.toLowerCase()))} selected={selectedNote} setSelected={setSelectedNote} />
+                    <NoteColumn notes={notes.filter(note => (note.list.includes(selected?.id ) || selected?.id === ImportantListId.allNote || (selected?.id === ImportantListId.favorites && note.favorites) ) && JSON.stringify(note).toLowerCase().includes(filter.toLowerCase()))} selected={selectedNote} setSelected={setSelectedNote} />
                 </div>}
                 {loadingNotes &&
                     <div className="h-full w-full flex flex-col items-center justify-center">

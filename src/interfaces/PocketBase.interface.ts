@@ -26,5 +26,11 @@ export interface PocketBaseNote {
     tag: string,
     title: string,
     updated: string,
-    list: string[]
+    list: string[],
+    favorites: boolean
+}
+
+export enum ImportantListId {
+    favorites = '20oysavre2e3trt',
+    allNote = '7idm9bxyicyne3p'
 }
